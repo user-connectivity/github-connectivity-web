@@ -1,5 +1,7 @@
 import { DatePipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
 import * as crypto from 'crypto-js';
 
@@ -13,10 +15,12 @@ import * as crypto from 'crypto-js';
 export class ConectivityComponent {
   panelOpenState = false;
   currentDate: string;
-  constructor(private datePipe: DatePipe,private auth: AuthService){
+  constructor( private route: ActivatedRoute, private http: HttpClient, private router: Router, private datePipe: DatePipe,private auth: AuthService){
     this.currentDate = this.getCurrentDate();
   }
 
+ 
+  
   loginWithGitHub(): void {
 
     console.log('LOGIN')
@@ -34,9 +38,9 @@ localStorage.setItem("latestCSRFToken", state);
 console.log('STATE',state)
     
 // redirect the user to github
-const link = `https://github.com/login/oauth/authorize?client_id=${client_id}&response_type=code&scope=repo&redirect_uri=${window.location.origin}/integrations/github/oauth2/callback&state=${state}`;
-console.log('LINK',link)
-window.location.href = link;
+const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${client_id}&response_type=code&scope=repo&redirect_uri=${window.location.origin}/integrations/github/oauth2/callback&state=${state}`;
+console.log('LINK',githubAuthUrl)
+window.location.href = githubAuthUrl;
   }
   
   getCurrentDate(): string {
