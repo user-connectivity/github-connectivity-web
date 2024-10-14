@@ -3,17 +3,25 @@
       <mat-accordion>
         <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" style="text-align: center;">
           <mat-expansion-panel-header>
-            <mat-panel-title> <img [src]="'assets/icons/github-brands-solid.svg'" alt="" /> Github  <img [src]="'assets/icons/check.svg'" alt="Edit" />
+            <mat-panel-title> <img style="margin-right: 10px;" [src]="'assets/icons/github-brands-solid.svg'" alt="" /> Github
+              <div *ngIf="connectedUser">
+                <img style="margin-left: 10px;" [src]="'assets/icons/check.svg'" alt="Edit" />      
+                <img style="margin-left: 10px;" [src]="'assets/icons/history.png'" width="15" height="15" alt="Edit" />      
+              </div>
             </mat-panel-title>
-            <mat-panel-description style="text-align: end;
-      display: block">
-                Admin : Last Synced : {{currentDate}} <br>
+            <mat-panel-description class="mat-panal-description" *ngIf="connectedUser">
+                {{connectedUser.data.name}} : Last Synced : {{getDate(connectedUser.data.created_at)}} <br>
                 Sync Type : full
             </mat-panel-description>
           </mat-expansion-panel-header>
-          <button *ngIf="true" mat-stroked-button (click)="connect()" style="background-color: #005cbb; color: white;">Connect</button>
-          <div *ngIf="false" style="text-align: end;" (click)="connect()">
-            <button mat-stroked-button style="background-color: #005cbb; color: white;">Remove</button>
+          <button *ngIf="!connectedUser" mat-stroked-button (click)="connect()" class="connect-disconnect-button">Connect</button>
+          <div *ngIf="connectedUser" style="text-align: end;">
+            <button mat-stroked-button class="connect-disconnect-button" (click)="disconectUser(connectedUser.data.accessToken)">Remove
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C10.8954 2 10 2.89543 10 4V5H14V4C14 2.89543 13.1046 2 12 2Z" fill="black"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M4 7C4 5.89543 4.89543 5 6 5H18C19.1046 5 20 5.89543 20 7V8H4V7ZM2 8V7C2 4.79086 3.79086 3 6 3H18C20.2091 3 22 4.79086 22 7V8C22 8.55228 21.5523 9 21 9H3C2.44772 9 2 8.55228 2 8ZM4 10H20V11C20 12.1046 19.1046 13 18 13H6C4.89543 13 4 12.1046 4 11V10ZM6 15C4.89543 15 4 15.8954 4 17V18C4 19.1046 4.89543 20 6 20H18C19.1046 20 20 19.1046 20 18V17C20 15.8954 19.1046 15 18 15H6ZM2 17C2 14.7909 3.79086 13 6 13H18C20.2091 13 22 14.7909 22 17V18C22 20.2091 20.2091 22 18 22H6C3.79086 22 2 20.2091 2 18V17Z" fill="black"/>
+              </svg>              
+            </button>
           </div>
         </mat-expansion-panel>
       </mat-accordion>

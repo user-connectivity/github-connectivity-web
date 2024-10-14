@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ConectivityComponent } from './component/conectivity/conectivity.component';
-import { GithubCallbackComponentComponent } from './component/github-callback-component/github-callback-component.component';
 
 const routes: Routes = [ {
   path: '',
@@ -9,9 +8,8 @@ const routes: Routes = [ {
   pathMatch: 'full',
 },
 {
-  path: 'integrations/github/oauth2/callback',
-  component: GithubCallbackComponentComponent ,
-  pathMatch: 'full',
+  path: 'connectivity',
+  component: ConectivityComponent ,
 }];
 
 @NgModule({

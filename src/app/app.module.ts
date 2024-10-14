@@ -11,14 +11,11 @@ import {MatButtonModule} from '@angular/material/button';
 import { ConectivityComponent } from './component/conectivity/conectivity.component';
 import { AuthModule } from '@auth0/auth0-angular';
 import { HttpClientModule } from '@angular/common/http';
-import { GithubCallbackComponentComponent } from './component/github-callback-component/github-callback-component.component';
-
 
 @NgModule({
   declarations: [
     AppComponent,
     ConectivityComponent,
-    GithubCallbackComponentComponent
   ],
   imports: [
     BrowserModule,
