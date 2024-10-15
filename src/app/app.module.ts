@@ -11,6 +11,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { ConectivityComponent } from './component/conectivity/conectivity.component';
 import { AuthModule } from '@auth0/auth0-angular';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatCardModule,
     MatButtonModule,
     HttpClientModule,
+    NgxSpinnerModule,
     AuthModule.forRoot({
       domain: 'YOUR_AUTH0_DOMAIN',
       clientId: 'YOUR_AUTH0_CLIENT_ID',
@@ -34,6 +36,7 @@ import { HttpClientModule } from '@angular/common/http';
       }
     }),
   ],
+  exports:[NgxSpinnerModule],
   providers: [],
   bootstrap: [AppComponent]
 })
